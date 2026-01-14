@@ -40,17 +40,17 @@ class Database:
         # Insert initial products if not exist
         products = [
             # PS5 Games
-            (1, 'God of War Ragnarök', 'Epic action-adventure', 69.99, '/images/product_1.svg', 'PS5', 8),
-            (2, 'Final Fantasy VII Remake', 'JRPG masterpiece', 59.99, '/images/product_2.svg', 'PS5', 5),
-            (3, 'Call Of Duty', 'Modern Shooter', 49.99, '/images/product_3.svg', 'PS5', 10),
+            (1, 'God of War Ragnarök', 'Epic action-adventure', 69.99, 'public/images/god_of_war_ragnarok.jpg', 'PS5', 8),
+            (2, 'Final Fantasy VII Remake', 'JRPG masterpiece', 59.99, 'public/images/final_fantasy_vii.jpg', 'PS5', 5),
+            (3, 'Call Of Duty', 'Modern Shooter', 49.99, 'public/images/call_of_duty.jpg', 'PS5', 10),
             # Xbox Games
-            (4, 'Halo 4', 'Sci-fi Shooter', 59.99, '/images/product_4.svg', 'Xbox', 7),
-            (5, 'Mortal Kombat', 'Fighting Game', 69.99, '/images/product_5.svg', 'Xbox', 4),
-            (6, 'Resident Evil', 'Survival Horror', 59.99, '/images/product_6.svg', 'Xbox', 9),
+            (4, 'Halo 4', 'Sci-fi Shooter', 59.99, 'public/images/halo_4.jpg', 'Xbox', 7),
+            (5, 'Mortal Kombat', 'Fighting Game', 69.99, 'public/images/mortal_kombat.jpg', 'Xbox', 4),
+            (6, 'Resident Evil', 'Survival Horror', 59.99, 'public/images/resident_evil.jpg', 'Xbox', 9),
             # Nintendo Switch
-            (7, 'Super Mario Odyssey', 'Platformer adventure', 49.99, '/images/product_7.svg', 'Switch', 12),
-            (8, 'Mario Kart 8 Deluxe', 'Racing game', 54.99, '/images/product_8.svg', 'Switch', 15),
-            (9, 'Street Fighter IV', 'fighting Game', 59.99, '/images/product_9.svg', 'Switch', 6),
+            (7, 'Super Mario Odyssey', 'Platformer adventure', 49.99, 'public/images/super_mario_odyssey.jpg', 'Switch', 12),
+            (8, 'Mario Kart 8 Deluxe', 'Racing game', 54.99, 'public/images/mario_kart_8_deluxe.jpg', 'Switch', 15),
+            (9, 'Street Fighter IV', 'fighting Game', 59.99, 'public/images/street_fighter_iv.jpg', 'Switch', 6),
         ]
         
         for product in products:
@@ -64,13 +64,22 @@ class Database:
     
     def get_products(self):
         """Fetch all products"""
-        conn = sqlite3.connect(self.db_path)
-        conn.row_factory = sqlite3.Row
-        cursor = conn.cursor()
-        cursor.execute('SELECT * FROM products')
-        products = [dict(row) for row in cursor.fetchall()]
-        conn.close()
-        return products
+        try:
+            print(f"DEBUG: Connecting to DB at {self.db_path}")
+            conn = sqlite3.connect(self.db_path)
+            print("DEBUG: Connected to DB")
+            conn.row_factory = sqlite3.Row
+            cursor = conn.cursor()
+            cursor.execute('SELECT * FROM products')
+            rows = cursor.fetchall()
+            print(f"DEBUG: Fetched {len(rows)} products")
+            products = [dict(row) for row in rows]
+            conn.close()
+            print("DEBUG: Closed DB connection")
+            return products
+        except Exception as e:
+            print(f"DEBUG: Error in get_products: {e}")
+            raise
     
     def get_product_by_id(self, product_id: int):
         """Fetch product by ID"""

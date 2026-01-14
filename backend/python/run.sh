@@ -13,6 +13,9 @@ fi
 # Activar virtual environment
 source venv/bin/activate  # Para Windows: venv\Scripts\activate
 
+echo "Actualizando pip..."
+python -m pip install --upgrade pip
+
 # Instalar dependencias
 echo "Instalando dependencias..."
 pip install -r requirements.txt

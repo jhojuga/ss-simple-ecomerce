@@ -12,6 +12,10 @@ if (-not (Test-Path "venv")) {
 # Activar virtual environment
 .\venv\Scripts\Activate.ps1
 
+# Actualizar pip
+Write-Host "Actualizando pip..."
+python -m pip install --upgrade pip
+
 # Instalar dependencias
 Write-Host "Instalando dependencias..."
 pip install -r requirements.txt

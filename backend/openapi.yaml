@@ -1,0 +1,149 @@
+openapi: 3.1.1
+info:
+  title: Mini Ecommerce API
+  description: API for videogame shop with dual backend support (Node.js/Express and FastAPI/Python)
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+    description: Local development server
+
+paths:
+  /api/products:
+    get:
+      summary: Get all products
+      description: Retrieve a list of all available products in the catalog
+      tags:
+        - Products
+      responses:
+        '200':
+          description: Successfully retrieved products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+        '500':
+          description: Server error
+
+  /api/orders:
+    post:
+      summary: Create a new order
+      description: Submit an order with items and process the purchase
+      tags:
+        - Orders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        '200':
+          description: Order created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+        '400':
+          description: Invalid request (empty cart, insufficient stock)
+        '404':
+          description: Product not found
+        '500':
+          description: Server error
+
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique product identifier
+        name:
+          type: string
+          description: Product name
+        description:
+          type: string
+          description: Product description
+        price:
+          type: number
+          format: float
+          description: Product price in USD
+        image_url:
+          type: string
+          description: URL to product image
+        category:
+          type: string
+          enum: [PS5, Xbox, Switch]
+          description: Gaming platform
+        stock:
+          type: integer
+          description: Available units in stock
+      required:
+        - id
+        - name
+        - price
+        - category
+        - stock
+
+    OrderItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Product ID
+        quantity:
+          type: integer
+          description: Quantity to purchase
+      required:
+        - id
+        - quantity
+
+    OrderRequest:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItem'
+          minItems: 1
+          description: Array of items to purchase
+      required:
+        - items
+
+    OrderResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the order was created successfully
+        order_id:
+          type: integer
+          description: Unique order identifier
+        total:
+          type: number
+          format: float
+          description: Total order amount
+        message:
+          type: string
+          description: Confirmation message
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+              price:
+                type: number
+              quantity:
+                type: integer
+              subtotal:
+                type: number
+      required:
+        - success
+        - order_id
+        - total

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arquitectura - SS Simple Ecommerce</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        @media (max-width: 768px) {
+            .content { grid-template-columns: 1fr; }
+        }
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+        .folder-tree {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.6;
+            color: #333;
+        }
+        .folder { color: #ff6b6b; font-weight: bold; }
+        .file { color: #495057; }
+        .check { color: #51cf66; font-weight: bold; }
+        .arrow { color: #adb5bd; }
+        .indent { display: inline-block; width: 20px; }
+        
+        .architecture {
+            background: #f8f9ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #667eea;
+        }
+        .architecture p {
+            margin: 10px 0;
+            color: #495057;
+        }
+        .path {
+            background: #e7f5ff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: monospace;
+            color: #1971c2;
+            border: 1px solid #74c0fc;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+        @media (max-width: 768px) {
+            .grid-3 { grid-template-columns: 1fr; }
+        }
+        .stat-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .stat-number {
+            font-size: 2em;
+            color: #667eea;
+            font-weight: bold;
+        }
+        .stat-label {
+            color: #868e96;
+            margin-top: 5px;
+            font-size: 0.9em;
+        }
+        .benefits {
+            list-style: none;
+            padding: 0;
+        }
+        .benefits li {
+            padding: 10px;
+            margin: 5px 0;
+            background: #f1f3f5;
+            border-radius: 5px;
+            border-left: 3px solid #51cf66;
+            padding-left: 15px;
+        }
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .before { border-left: 4px solid #ff6b6b; }
+        .after { border-left: 4px solid #51cf66; }
+        .comparison-box {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .comparison-box h3 {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .comparison-box p {
+            font-size: 0.9em;
+            color: #495057;
+            margin: 5px 0;
+        }
+        .footer {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin: 5px;
+            font-weight: bold;
+        }
+        .badge-success { background: #51cf66; color: white; }
+        .badge-warning { background: #ffd43b; color: #333; }
+        .badge-info { background: #74c0fc; color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Arquitectura Centralizada - SS Simple Ecommerce</h1>
+        
+        <div class="content">
+            <!-- Estructura del Proyecto -->
+            <div class="card">
+                <h2>📁 Estructura del Proyecto</h2>
+                <div class="folder-tree">
+                    <div><span class="folder">ss-simple-ecommerce/</span></div>
+                    <div><span class="indent"></span><span class="file">README.md</span> <span class="check">✅</span> (Documentación centralizada)</div>
+                    <div><span class="indent"></span><span class="file">arquitectura.html</span> <span class="check">✅</span> (Este archivo)</div>
+                    <div><span class="indent"></span><span class="file">.gitignore</span> <span class="check">✅</span> (Configuración Git)</div>
+                    <div><span class="indent"></span><span class="folder">backend/</span> <span class="check">✅</span> (Recursos centralizados)</div>
+                    <div><span class="indent"></span><span class="indent"></span><span class="file">ecommerce.db</span> <span class="check">✅</span> (Compartida)</div>
+                    <div><span class="indent"></span><span class="indent"></span><span class="file">openapi.yaml</span> <span class="check">✅</span> (Compartida)</div>
+                    <div><span class="indent"></span><span class="indent"></span><span class="folder">nodejs/</span></div>
+                    <div><span class="indent"></span><span class="indent"></span><span class="indent"></span><span class="file">.gitignore</span> <span class="check">✅</span></div>
+                    <div><span class="indent"></span><span class="indent"></span><span class="indent"></span><span class="file">package.json</span></div>
+                    <div><span class="indent"></span><span class="indent"></span><span class="indent"></span><span class="folder">src/</span></div>
+                    <div><span class="indent"></span><span class="indent"></span><span class="indent"></span><span class="indent"></span><span class="file">index.js</span> (→ ../../openapi.yaml)</div>
+                    <div><span class="indent"></span><span class="indent"></span><span class="indent"></span><span class="indent"></span><span class="file">db.js</span> (→ ../../ecommerce.db)</div>
+                    <div><span class="indent"></span><span class="indent"></span><span class="folder">python/</span></div>
+                    <div><span class="indent"></span><span class="indent"></span><span class="indent"></span><span class="file">.gitignore</span> <span class="check">✅</span></div>
+                    <div><span class="indent"></span><span class="indent"></span><span class="indent"></span><span class="file">main.py</span> (→ ../openapi.yaml)</div>
+                    <div><span class="indent"></span><span class="indent"></span><span class="indent"></span><span class="file">db.py</span> (→ ../ecommerce.db)</div>
+                    <div><span class="indent"></span><span class="indent"></span><span class="indent"></span><span class="file">requirements.txt</span></div>
+                    <div><span class="indent"></span><span class="folder">frontend/</span></div>
+                    <div><span class="indent"></span><span class="indent"></span><span class="file">.gitignore</span> <span class="check">✅</span></div>
+                    <div><span class="indent"></span><span class="indent"></span><span class="file">package.json</span></div>
+                    <div><span class="indent"></span><span class="indent"></span><span class="file">vite.config.ts</span> (Proxy configurado)</div>
+                    <div><span class="indent"></span><span class="indent"></span><span class="file">.env.dev-nodejs</span> <span class="check">✅</span></div>
+                    <div><span class="indent"></span><span class="indent"></span><span class="file">.env.dev-python</span> <span class="check">✅</span></div>
+                    <div><span class="indent"></span><span class="indent"></span><span class="folder">src/</span></div>
+                    <div><span class="indent"></span><span class="indent"></span><span class="indent"></span><span class="folder">context/</span> (CartContext.tsx)</div>
+                    <div><span class="indent"></span><span class="indent"></span><span class="indent"></span><span class="folder">hooks/</span> (useCart, useProducts)</div>
+                    <div><span class="indent"></span><span class="indent"></span><span class="indent"></span><span class="folder">pages/</span> (Home, CartPage, OrderConfirmation)</div>
+                    <div><span class="indent"></span><span class="indent"></span><span class="indent"></span><span class="folder">services/</span> (api.ts)</div>
+                </div>
+            </div>
+
+            <!-- Decisiones de Arquitectura -->
+            <div class="card">
+                <h2>🏗️ Decisiones de Arquitectura</h2>
+                
+                <div class="architecture">
+                    <strong>❓ ¿Dónde la Base de Datos?</strong>
+                    <p style="color: #51cf66; font-weight: bold; margin-top: 10px;">✅ backend/ecommerce.db</p>
+                    <p><strong>Por qué:</strong> Es un recurso del backend, necesario por ambos servidores (nodejs y python)</p>
+                </div>
+
+                <div class="architecture">
+                    <strong>❓ ¿Dónde el OpenAPI?</strong>
+                    <p style="color: #51cf66; font-weight: bold; margin-top: 10px;">✅ backend/openapi.yaml</p>
+                    <p><strong>Por qué:</strong> Documentación de la API, no accesible directamente por frontend (usa HTTP)</p>
+                </div>
+
+                <div class="architecture">
+                    <strong>🎯 Resultado:</strong>
+                    <p>Centralización completa de recursos backend en una sola carpeta</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparación Antes/Después -->
+        <div class="card">
+            <h2>🔄 Evolución de la Arquitectura</h2>
+                <div class="comparison-box after">
+                    <h3>✅ Backend Centralizado</h3>
+                    <p><strong>ecommerce.db</strong><br/>backend/</p>
+                    <p><strong>openapi.yaml</strong><br/>backend/</p>
+                    <p style="color: #51cf66;"><strong>Ventajas:</strong></p>
+                    <ul style="margin-top: 5px; margin-left: 15px;">
+                        <li>Estructura clara</li>
+                        <li>Rutas simples</li>
+                        <li>Separación de concerns</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Estado del Sistema -->
+        <div class="grid-3">
+            <div class="stat-box">
+                <div class="stat-number">2</div>
+                <div class="stat-label">Backends Operacionales</div>
+                <div style="margin-top: 10px;">
+                    <span class="badge badge-success">Node.js ✅</span><br/>
+                    <span class="badge badge-success">FastAPI ✅</span>
+                </div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">1</div>
+                <div class="stat-label">Base de Datos Compartida</div>
+                <div style="margin-top: 10px;">
+                    <span class="badge badge-success">backend/ecommerce.db</span>
+                </div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">1</div>
+                <div class="stat-label">OpenAPI Centralizado</div>
+                <div style="margin-top: 10px;">
+                    <span class="badge badge-success">backend/openapi.yaml</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Beneficios -->
+        <div class="card" style="margin-top: 30px;">
+            <h2>✨ Beneficios de Esta Arquitectura</h2>
+            <ul class="benefits">
+                <li><strong>🔄 Sincronización:</strong> Ambos backends leen/escriben la misma BD</li>
+                <li><strong>📋 Documentación Única:</strong> Una sola versión del OpenAPI para ambos</li>
+                <li><strong>🎯 Claridad:</strong> Separación clara entre backend (resources) y frontend (UI)</li>
+                <li><strong>📈 Escalabilidad:</strong> Agregar un 3er backend es trivial</li>
+                <li><strong>🧹 Mantenibilidad:</strong> Cambios en BD afectan a todos automáticamente</li>
+                <li><strong>🚀 Profesionalismo:</strong> Sigue patrones de proyectos reales</li>
+            </ul>
+        </div>
+
+        <!-- Validaciones Implementadas -->
+        <div class="card" style="margin-top: 30px;">
+            <h2>✅ Validaciones Implementadas</h2>
+            <ul class="benefits">
+                <li><strong>.gitignore:</strong> Optimizados para cada tipo de proyecto (raíz, Node.js, Python, React)</li>
+                <li><strong>Documentación:</strong> Centralizada en README.md raíz (511 líneas con todo)</li>
+                <li><strong>Rutas de acceso:</strong> Validadas y documentadas en este archivo</li>
+                <li><strong>Variables de entorno:</strong> Configuradas con Vite modes (.env.dev-nodejs, .env.dev-python)</li>
+                <li><strong>Proxy frontend:</strong> Configurado en vite.config.ts para ambos backends</li>
+                <li><strong>Backend dual:</strong> Ambos acceden a la misma BD y OpenAPI centralizados</li>
+            </ul>
+        </div>
+
+        <!-- Estado Actual -->
+        <div class="card" style="margin-top: 30px;">
+            <h2>📊 Estado Actual del Proyecto</h2>
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr style="background: #f8f9fa; border-bottom: 1px solid #e9ecef;">
+                    <td style="padding: 10px; font-weight: bold;">Componente</td>
+                    <td style="padding: 10px; font-weight: bold;">Estado</td>
+                    <td style="padding: 10px; font-weight: bold;">URL/Ubicación</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #e9ecef;">
+                    <td style="padding: 10px;">Backend Node.js</td>
+                    <td style="padding: 10px;"><span class="badge badge-success">✅ Funcionando</span></td>
+                    <td style="padding: 10px;">http://localhost:3000</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #e9ecef;">
+                    <td style="padding: 10px;">Base de Datos</td>
+                    <td style="padding: 10px;"><span class="badge badge-success">✅ Creada</span></td>
+                    <td style="padding: 10px;">backend/ecommerce.db</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #e9ecef;">
+                    <td style="padding: 10px;">OpenAPI</td>
+                    <td style="padding: 10px;"><span class="badge badge-success">✅ Centralizado</span></td>
+                    <td style="padding: 10px;">backend/openapi.yaml</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #e9ecef;">
+                    <td style="padding: 10px;">Frontend React</td>
+                    <td style="padding: 10px;"><span class="badge badge-success">✅ Funcionando</span></td>
+                    <td style="padding: 10px;">http://localhost:5173</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #e9ecef;">
+                    <td style="padding: 10px;">Backend FastAPI</td>
+                    <td style="padding: 10px;"><span class="badge badge-success">✅ Funcionando</span></td>
+                    <td style="padding: 10px;">http://localhost:8000</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="footer">
+            <p style="margin: 10px 0;"><strong>Proyecto SS Simple Ecommerce</strong></p>
+            <p style="font-size: 0.9em; opacity: 0.8;">Arquitectura centralizada con BD y OpenAPI compartidos • Dual backend (Node.js + FastAPI)</p>
+            <p style="margin-top: 20px; font-size: 0.8em;">🚀 Listo para escalabilidad y mantenimiento</p>
+        </div>
+    </div>
+</body>
+</html>

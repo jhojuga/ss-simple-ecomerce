@@ -38,7 +38,7 @@ const products = [
   { id: 5, name: 'Mortal Kombat', description: 'Fighting Game', price: 69.99, image_url: '/images/mortal_kombat.jpg', category: 'Xbox', stock: 4 },
   { id: 6, name: 'Resident Evil', description: 'Survival Horror', price: 59.99, image_url: '/images/resident_evil.jpg', category: 'Xbox', stock: 9 },
   // Switch
-  { id: 7, name: 'Super Mario Odyssey', description: 'Platformer adventure', price: 49.99, image_url: '/images/super_mario_odyseey.jpg', category: 'Switch', stock: 12 },
+  { id: 7, name: 'Super Mario Odyssey', description: 'Platformer adventure', price: 49.99, image_url: '/images/super_mario_odyssey.jpg', category: 'Switch', stock: 12 },
   { id: 8, name: 'Mario Kart 8 Deluxe', description: 'Racing game', price: 54.99, image_url: '/images/mario_kart_8_deluxe.jpg', category: 'Switch', stock: 15 },
   { id: 9, name: 'Street Fighter IV', description: 'Fighting Game', price: 59.99, image_url: '/images/street_fighter_4.jpg', category: 'Switch', stock: 6 }
 ];

@@ -50,7 +50,7 @@ class Database:
             # Nintendo Switch
             (7, 'Super Mario Odyssey', 'Platformer adventure', 49.99, 'public/images/super_mario_odyssey.jpg', 'Switch', 12),
             (8, 'Mario Kart 8 Deluxe', 'Racing game', 54.99, 'public/images/mario_kart_8_deluxe.jpg', 'Switch', 15),
-            (9, 'Street Fighter IV', 'fighting Game', 59.99, 'public/images/street_fighter_iv.jpg', 'Switch', 6),
+            (9, 'Street Fighter IV', 'fighting Game', 59.99, 'public/images/street_fighter_4.jpg', 'Switch', 6),
         ]
         
         for product in products:
@@ -102,21 +102,22 @@ class Database:
             total = 0.0
             
             for item in items:
-                product = self.get_product_by_id(item.id)
+                print(f"DEBUG: Processing item: {item}")
+                product = self.get_product_by_id(item['id'])
                 if not product:
-                    raise ValueError(f"Product {item.id} not found")
+                    raise ValueError(f"Product {item['id']} not found")
                 
-                if product['stock'] < item.quantity:
+                if product['stock'] < item['quantity']:
                     raise ValueError(f"Insufficient stock for {product['name']}")
                 
-                subtotal = float(product['price']) * item.quantity
+                subtotal = float(product['price']) * item['quantity']
                 total += subtotal
                 
                 order_items.append({
                     'id': product['id'],
                     'name': product['name'],
                     'price': float(product['price']),
-                    'quantity': item.quantity,
+                    'quantity': item['quantity'],
                     'subtotal': round(subtotal, 2)
                 })
             
@@ -131,7 +132,7 @@ class Database:
             for item in items:
                 cursor.execute(
                     'UPDATE products SET stock = stock - ? WHERE id = ?',
-                    (item.quantity, item.id)
+                    (item['quantity'], item['id'])
                 )
             
             conn.commit()

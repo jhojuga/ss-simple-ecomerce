@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 // VITE_BACKEND_PORT: '3000' (dev-nodejs: Node.js + Express)
 //                  : '8000' (dev-python: FastAPI + Python)
 const backendPort = process.env.VITE_BACKEND_PORT || '3000'
-const backendTarget = `http://localhost:${backendPort}`
+const backendTarget = `http://127.0.0.1:${backendPort}`
 
 export default defineConfig({
   plugins: [react()],

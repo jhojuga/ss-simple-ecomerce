@@ -21,6 +21,6 @@ Write-Host "Instalando dependencias..."
 pip install -r requirements.txt
 
 # Ejecutar FastAPI
-Write-Host "Iniciando FastAPI en http://localhost:8000"
-Write-Host "API Docs: http://localhost:8000/docs"
+Write-Host "Iniciando FastAPI en http://localhost:8001"
+Write-Host "API Docs: http://localhost:8001/docs"
 python main.py

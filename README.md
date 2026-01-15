@@ -38,7 +38,7 @@ ss-simple-ecomerce/
 │
 └── frontend/                   # React + TypeScript + Vite
     ├── .env.dev-nodejs        # Variables para Node.js backend (puerto 3000)
-    ├── .env.dev-python        # Variables para FastAPI backend (puerto 8000)
+    ├── .env.dev-python        # Variables para FastAPI backend (puerto 8001)
     ├── .gitignore
     ├── eslint.config.js
     ├── index.html
@@ -135,9 +135,9 @@ cd backend/python
 python -m venv venv
 source venv/bin/activate                # Windows: venv\Scripts\activate
 pip install -r requirements.txt
-python main.py                          # Inicia en http://localhost:8000
-                                        # API: http://localhost:8000/api/products
-                                        # Docs: http://localhost:8000/docs
+python main.py                          # Inicia en http://localhost:8001
+                                        # API: http://localhost:8001/api/products
+                                        # Docs: http://localhost:8001/docs
 ```
 
 #### Frontend React + Vite
@@ -151,7 +151,7 @@ npm install
 # Con Node.js backend (puerto 3000)
 npm run dev:nodejs                      # http://localhost:5173
 
-# O con FastAPI backend (puerto 8000)
+# O con FastAPI backend (puerto 8001)
 npm run dev:python                      # http://localhost:5173
 
 # Build para producción
@@ -209,13 +209,13 @@ Frontend (puerto 5173) → Vite Proxy → Backend
 
 Los scripts de desarrollo usan archivos `.env`:
 - `.env.dev-nodejs` → `VITE_BACKEND_PORT=3000` (Node.js)
-- `.env.dev-python` → `VITE_BACKEND_PORT=8000` (FastAPI)
+- `.env.dev-python` → `VITE_BACKEND_PORT=8001` (FastAPI)
 
 **Cambiar Backend sin Reinstalar:**
 ```bash
 # Detén el servidor Vite (Ctrl+C) y ejecuta:
 npm run dev:nodejs    # Cambia a Node.js (puerto 3000)
-npm run dev:python    # Cambia a FastAPI (puerto 8000)
+npm run dev:python    # Cambia a FastAPI (puerto 8001)
 ```
 
 ## 🛠️ Scripts Disponibles
@@ -223,7 +223,7 @@ npm run dev:python    # Cambia a FastAPI (puerto 8000)
 ### Frontend (cd frontend)
 ```bash
 npm run dev:nodejs    # Proxy a Node.js/Express (puerto 3000) + HMR
-npm run dev:python    # Proxy a FastAPI/Python (puerto 8000) + HMR
+npm run dev:python    # Proxy a FastAPI/Python (puerto 8001) + HMR
 npm run dev           # Alias de dev:nodejs
 npm run build         # Build optimizado para producción (dist/)
 npm run lint          # Ejecutar ESLint
@@ -241,7 +241,7 @@ npm run dev           # Iniciar servidor en puerto 3000 con nodemon
 python -m venv venv                  # Crear virtual environment
 source venv/bin/activate             # Activar (Windows: venv\Scripts\activate)
 pip install -r requirements.txt      # Instalar dependencias
-python main.py                       # Iniciar servidor en puerto 8000
+python main.py                       # Iniciar servidor en puerto 8001
 ```
 
 ## 📦 Stack Tecnológico Detallado
@@ -408,7 +408,7 @@ Crea una nueva orden con los items del carrito.
 
 **Documentación Interactiva:**
 - Node.js: `http://localhost:3000/api-docs`
-- FastAPI: `http://localhost:8000/docs`
+- FastAPI: `http://localhost:8001/docs`
 
 ## 📝 Desarrollo
 
@@ -460,12 +460,12 @@ No uses `npm run dev` con variables de entorno en línea en Windows.
 # Windows (PowerShell):
 Get-Process -Id (Get-NetTCPConnection -LocalPort 5173).OwningProcess | Stop-Process -Force
 Get-Process -Id (Get-NetTCPConnection -LocalPort 3000).OwningProcess | Stop-Process -Force
-Get-Process -Id (Get-NetTCPConnection -LocalPort 8000).OwningProcess | Stop-Process -Force
+Get-Process -Id (Get-NetTCPConnection -LocalPort 8001).OwningProcess | Stop-Process -Force
 
 # Linux/Mac:
 lsof -ti :5173 | xargs kill -9
 lsof -ti :3000 | xargs kill -9
-lsof -ti :8000 | xargs kill -9
+lsof -ti :8001 | xargs kill -9
 ```
 
 ### ⚡ Problema: "Module not found" en frontend
@@ -499,7 +499,7 @@ rm backend/ecommerce.db
 # Si backend está en puerto 3000:
 npm run dev:nodejs
 
-# Si backend está en puerto 8000:
+# Si backend está en puerto 8010:
 npm run dev:python
 ```
 
@@ -541,9 +541,9 @@ ls -la backend/
 | **Frontend** | http://localhost:5173 | Aplicación React |
 | **Node.js API** | http://localhost:3000/api/ | Endpoints Express |
 | **Node.js Docs** | http://localhost:3000/api-docs | Swagger UI |
-| **FastAPI API** | http://localhost:8000/api/ | Endpoints FastAPI |
-| **FastAPI Docs** | http://localhost:8000/docs | Interactive API docs |
-| **FastAPI Schema** | http://localhost:8000/openapi.json | OpenAPI schema |
+| **FastAPI API** | http://localhost:8001/api/ | Endpoints FastAPI |
+| **FastAPI Docs** | http://localhost:8001/docs | Interactive API docs |
+| **FastAPI Schema** | http://localhost:8001/openapi.json | OpenAPI schema |
 
 ## 📚 Documentación Adicional
 
@@ -566,7 +566,7 @@ cd backend/nodejs
 
 # Terminal 1: Inicia FastAPI
 cd ../python
-python main.py                  # Ahora en puerto 8000
+python main.py                  # Ahora en puerto 8001
 
 # Terminal 2: Detén frontend (Ctrl+C)
 cd frontend

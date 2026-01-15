@@ -51,7 +51,7 @@ def get_products():
 def create_order(order: OrderRequest):
     """Create a new order and process payment"""
     try:
-        result = order_service.create_order([item.dict() for item in order.items])
+        result = order_service.create_order([item.model_dump() for item in order.items])
         return result
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
@@ -75,4 +75,4 @@ def get_openapi_schema():
 if __name__ == "__main__":
     print("FastAPI Server running on http://localhost:8000")
     print("API Documentation: http://localhost:8000/docs")
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="127.0.0.1", port=8001)

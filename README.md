@@ -2,7 +2,7 @@
 
 Una aplicación de ecommerce moderna para una tienda de videojuegos, con frontend en React + TypeScript y dual backend (Node.js/Express y FastAPI/Python).
 
-![Uploading Recording 2026-01-14 at 22.59.22.gif…]()
+[screen-recording.webm](https://github.com/user-attachments/assets/cfefc909-88b9-49f8-b676-79331452899c)
 
 ## � Estructura del Proyecto
 

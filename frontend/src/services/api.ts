@@ -24,7 +24,7 @@ export interface OrderResponse {
 }
 
 const apiClient = axios.create({
-  baseURL: '/api',
+  baseURL: 'http://127.0.0.1:8001/api',
   headers: {
     'Content-Type': 'application/json',
   },
